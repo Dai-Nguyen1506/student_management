@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Danh sách sinh viên</h2>
+<ul>
+    {% for s in students %}
+    <li>{{ s.student_id }} - {{ s.name }} - {{ s.age }} tuổi - {{ s.major }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
