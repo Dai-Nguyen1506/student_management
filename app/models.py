@@ -6,7 +6,7 @@ from app.database import get_connection
 def get_all_students():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM students")
+    cursor.execute("SELECT * FROM student")
     students = cursor.fetchall()
     conn.close()
     return students
@@ -14,14 +14,14 @@ def get_all_students():
 def add(name, age, major):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO students (name, age, major) VALUES (%s, %s, %s)", (name, age, major))
+    cursor.execute("INSERT INTO student (name, age, major) VALUES (%s, %s, %s)", (name, age, major))
     conn.commit()
     conn.close()
 
 def delete(student_id):
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM students WHERE id = %s", (student_id,))
+    cursor.execute("DELETE FROM student WHERE id = %s", (student_id,))
     conn.commit()
     conn.close()
 

@@ -2,6 +2,11 @@
 
 {% block content %}
 <h2>Danh sách sinh viên</h2>
+
+{% if students|length == 0 %}
+    <p>Không có sinh viên nào.</p>
+    {% endif %}
+
 <ul>
     {% for s in students %}
     <li>{{ s.student_id }} - {{ s.name }} - {{ s.age }} tuổi - {{ s.major }}</li>
