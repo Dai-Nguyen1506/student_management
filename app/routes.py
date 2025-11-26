@@ -5,8 +5,11 @@ from app.models import add
 
 student_bp = Blueprint("students", __name__, url_prefix="/students", template_folder="templates")
 
+# File tạo các route liên quan đến sinh viên, hay gọi là các trang và các hành động CRUD
+
+# Route hiển thị danh sách sinh viên
 @student_bp.route("/")
-def index():
+def list_student():
     students = get_all_students()
     return render_template("students.html", students=students)
 
@@ -20,6 +23,6 @@ def add_student():
 
         add(name, age, major)
 
-        return redirect(url_for("students.index"))
+        return redirect(url_for("students.list_student"))
     
     return render_template("add_student.html")
