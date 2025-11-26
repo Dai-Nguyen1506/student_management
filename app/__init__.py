@@ -16,6 +16,6 @@ def create_app():
     # route gốc "/" → redirect sang /students
     @app.route("/")
     def home():
-        return redirect(url_for("students.list_student"))
+        return redirect(url_for("students.home"))
 
     return app

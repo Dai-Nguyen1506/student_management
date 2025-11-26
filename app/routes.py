@@ -7,6 +7,11 @@ student_bp = Blueprint("students", __name__, url_prefix="/students", template_fo
 
 # File tạo các route liên quan đến sinh viên, hay gọi là các trang và các hành động CRUD
 
+# Route trang chủ
+@student_bp.route("/home")
+def home():
+    return render_template("index.html")
+
 # Route hiển thị danh sách sinh viên
 @student_bp.route("/")
 def list_student():
