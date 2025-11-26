@@ -1,5 +1,5 @@
 # app/models.py
-from app.database import get_connection
+from app.connection import get_connection
 
 # File tạo các hàm thao tác với cơ sở dữ liệu liên quan đến sinh viên
 
