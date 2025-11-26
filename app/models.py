@@ -3,6 +3,7 @@ from app.connection import get_connection
 
 # File tạo các hàm thao tác với cơ sở dữ liệu liên quan đến sinh viên
 
+# Lấy tất cả sinh viên từ cơ sở dữ liệu
 def get_all_students():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
@@ -11,6 +12,7 @@ def get_all_students():
     conn.close()
     return students
 
+# Thêm sinh viên mới vào cơ sở dữ liệu
 def add(name, age, major):
     conn = get_connection()
     cursor = conn.cursor()
@@ -18,6 +20,7 @@ def add(name, age, major):
     conn.commit()
     conn.close()
 
+# Xoá sinh viên khỏi cơ sở dữ liệu dựa trên ID
 def delete(student_id):
     conn = get_connection()
     cursor = conn.cursor()
