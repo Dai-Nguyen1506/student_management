@@ -1,15 +1,42 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <h2>Danh sách sinh viên</h2>
 
 {% if students|length == 0 %}
 <p>Không có sinh viên nào.</p>
 {% endif %}
 
-<ul>
-    {% for s in students %}
-    <li>{{ s.student_id }} - {{ s.name }} - {{ s.age }} tuổi - {{ s.major }}</li>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">ID Program</th>
+      <th scope="col">Enrollment Year</th>
+      <th scope="col">Created</th>
+      <th scope="col">Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in students %}
+    <tr>
+      <th scope="row">{{ student.student_id }}</th>
+      <td>{{ student.full_name }}</td>
+      <td>{{ student.date_of_birth }}</td>
+      <td>{{ student.gender }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.phone_number }}</td>
+      <td>{{ student.address }}</td>
+      <td>{{ student.program_id }}</td>
+      <td>{{ student.enrollment_year }}</td>
+      <td>{{ student.created_at }}</td>
+      <td>{{ student.updated_at }}</td>
+    </tr>
     {% endfor %}
-</ul>
+  </tbody>
+</table>
 {% endblock %}

@@ -1,84 +1,84 @@
 form label {
-    display: inline-block;
-    width: 80px;
+  display: inline-block;
+  width: 80px;
 }
 form input {
-    padding: 5px;
-    margin-bottom: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 button {
-    padding: 5px 10px;
-    cursor: pointer;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 ul li {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 a {
-    display: inline-block;
-    margin-bottom: 15px;
-    color: blue;
-    text-decoration: underline;
+  display: inline-block;
+  margin-bottom: 15px;
+  color: blue;
+  text-decoration: underline;
 }
 
 /* Reset cơ bản */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
 }
 /*----------------------------------------------*/
 /* Sidebar cố định bên trái */
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 220px;
-    height: 100%;
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100%;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 /* Logo trên cùng */
 .sidebar .logo {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .sidebar .logo img {
-    width: 150px;
-    height: auto;
-    border-radius: 10px;
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
 }
 
 /* Link trong sidebar */
 .sidebar nav a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin: 10px 0;
-    padding: 8px;
-    border-radius: 4px;
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 4px;
 }
 
 .sidebar nav a:hover {
-    background-color: #73b9ff;
+  background-color: #73b9ff;
 }
 
 /* Nội dung chính */
 .content {
-    margin-left: 240px;  /* bằng width sidebar + padding */
-    padding: 20px;
+  margin-left: 240px; /* bằng width sidebar + padding */
+  padding: 20px;
 }
 
 /* Footer */
 footer {
-    margin-left: 240px;
-    padding: 10px 20px;
-    background-color: #f1f1f1;
-    text-align: center;
+  margin-left: 240px;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  text-align: center;
 }
-
