@@ -11,20 +11,3 @@ def get_all_students():
     students = cursor.fetchall()
     conn.close()
     return students
-
-# Thêm sinh viên mới vào cơ sở dữ liệu
-def add(name, age, major):
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO student (name, age, major) VALUES (%s, %s, %s)", (name, age, major))
-    conn.commit()
-    conn.close()
-
-# Xoá sinh viên khỏi cơ sở dữ liệu dựa trên ID
-def delete(student_id):
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM student WHERE id = %s", (student_id,))
-    conn.commit()
-    conn.close()
-
