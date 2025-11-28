@@ -7,10 +7,10 @@
 
     <!-- Link to external CSS file -->
     <!-- My css -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="{{ url_for('static', filename='mystyle/styles.css') }}"
-    />
+    /> -->
     <!-- Css Bootstrap -->
     <link
       rel="stylesheet"
@@ -19,22 +19,13 @@
   </head>
 
   <body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="logo">
-        <img
-          src="{{ url_for('static', filename='images/logo_neu.png') }}"
-          alt="Logo"
-        />
-      </div>
-      <h1>NEU Student Management</h1>
-      <hr />
-      <nav>
-        <a href="{{ url_for('students.home') }}">Trang chủ</a>
-        <a href="{{ url_for('students.list_student') }}">Danh sách sinh viên</a>
-        <a href="{{ url_for('students.add_student') }}">Thêm sinh viên</a>
-      </nav>
-    </aside>
+    <h1>NEU Student Management</h1>
+    <hr />
+    <nav>
+      <a href="{{ url_for('students.home') }}">Trang chủ</a>
+      <a href="{{ url_for('students.list_student') }}">Danh sách sinh viên</a>
+      <a href="{{ url_for('students.add_student') }}">Thêm sinh viên</a>
+    </nav>
 
     <!-- Main content -->
     <main class="content">{% block content %} {% endblock %}</main>

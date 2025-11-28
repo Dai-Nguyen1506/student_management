@@ -26,7 +26,7 @@ def add_student():
         age = request.form["age"]
         major = request.form["major"]
 
-        add(name, age, major)
+        # add(name, age, major)
 
         return redirect(url_for("students.list_student"))
     
