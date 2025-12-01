@@ -1,42 +1,137 @@
 {% extends "base.html" %} {% block content %}
-<h2>Danh sách sinh viên</h2>
+<h2>Student Information</h2>
 
-{% if students|length == 0 %}
-<p>Không có sinh viên nào.</p>
-{% endif %}
+<div>
+  <form class="d-flex" role="search" method="POST" action="{{ url_for('students.search_student') }} ">
+    <input class="form-control me-2" type="search" placeholder="ID" aria-label="Search" name="student_id" />
+    <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="name" />
+    <input class="form-control me-2" type="search" placeholder="Email" aria-label="Search" name="email" />
+    <input class="form-control me-2" type="search" placeholder="ID Program" aria-label="Search" name="id_program" />
+    <input class="form-control me-2" type="search" placeholder="Enrollment Year" aria-label="Search"
+      name="enrollment_year" />
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+</div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Birthday</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Email</th>
-      <th scope="col">Phone</th>
-      <th scope="col">Address</th>
-      <th scope="col">ID Program</th>
-      <th scope="col">Enrollment Year</th>
-      <th scope="col">Created</th>
-      <th scope="col">Updated</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for student in students %}
-    <tr>
-      <th scope="row">{{ student.student_id }}</th>
-      <td>{{ student.full_name }}</td>
-      <td>{{ student.date_of_birth }}</td>
-      <td>{{ student.gender }}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.phone_number }}</td>
-      <td>{{ student.address }}</td>
-      <td>{{ student.program_id }}</td>
-      <td>{{ student.enrollment_year }}</td>
-      <td>{{ student.created_at }}</td>
-      <td>{{ student.updated_at }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">ID Program</th>
+        <th scope="col">Enrollment Year</th>
+        <th scope="col">Created</th>
+        <th scope="col">Updated</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if students|length == 0 %}
+      <tr>
+        <td colspan="12" class="text-center">No students found.</td>
+      </tr>
+      {% endif %}
+      {% for student in students %}
+      <tr>
+        <th scope="row">{{ student.student_id }}</th>
+        <td>{{ student.full_name }}</td>
+        <td>{{ student.date_of_birth }}</td>
+        <td>{{ student.gender }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.phone_number }}</td>
+        <td>{{ student.address }}</td>
+        <td>{{ student.program_id }}</td>
+        <td>{{ student.enrollment_year }}</td>
+        <td>{{ student.created_at }}</td>
+        <td>{{ student.updated_at }}</td>
+        <td>
+          <!-- Button trigger modal -->
+          <button class="btn btn-primary btn-more" data-id="{{ student.student_id }}"
+            data-name="{{ student.full_name }}" data-email="{{ student.email }}"
+            data-birth="{{ student.date_of_birth }}" data-phone="{{ student.phone_number }}"
+            data-address="{{ student.address }}">
+            More
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal1: More -->
+<div class="modal fade" id="modalMore" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thông tin sinh viên</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>ID: <span id="modal-id"></span></p>
+        <p>Họ tên: <span id="modal-name"></span></p>
+        <p>Email: <span id="modal-email"></span></p>
+        <p>Ngày sinh: <span id="modal-birth"></span></p>
+        <p>Số điện thoại: <span id="modal-phone"></span></p>
+        <p>Địa chỉ: <span id="modal-address"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button id="btnDelete" class="btn btn-danger">Delete</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-primary" id="btnUpdate">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal2: Update -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cập nhật thông tin</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <label>ID: <input type="text" id="update-id" readonly></label><br>
+        <label>Họ tên: <input type="text" id="update-name"></label><br>
+        <label>Email: <input type="email" id="update-email"></label>
+        <label>Ngày sinh: <input type="date" id="update-birth"></label><br>
+        <label>Số điện thoại: <input type="text" id="update-phone"></label><br>
+        <label>Địa chỉ: <input type="text" id="update-address"></label><br>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btnBack">Back</button>
+        <button class="btn btn-success" id="btnSave">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal3: Delete -->
+<!-- Modal -->
+<div class="modal fade" id="modalDeleteConfirm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this student?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button id="btnDeleteConfirm" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}

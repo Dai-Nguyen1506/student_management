@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEU - Student Management</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle/styles.css') }}" />
+</head>
+
+<body>
+    <h2>Welcome to NEU Student Management System</h2>
+    <p>Trang web quản lý sinh viên Đại học Kinh tế Quốc dân</p>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <a class="btn btn-primary btn-lg px-5 py-3" href="{{ url_for('students.home') }}">Start</a>
+    </div>
+
+</body>
+
+</html>
