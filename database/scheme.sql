@@ -102,6 +102,7 @@ CREATE TABLE tuition_fee (
     payment_status ENUM('Unpaid','Partially Paid','Fully Paid') DEFAULT 'Unpaid',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CHECK (amount_paid <= total_amount AND amount_paid >= 0),
     CONSTRAINT fk_fee_student
       FOREIGN KEY (student_id) REFERENCES student(student_id)
       ON DELETE CASCADE ON UPDATE CASCADE
@@ -117,6 +118,9 @@ CREATE TABLE payment (
     remarks VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    CHECK (amount > 0),
+
     CONSTRAINT fk_payment_fee
       FOREIGN KEY (fee_id) REFERENCES tuition_fee(fee_id)
       ON DELETE CASCADE ON UPDATE CASCADE
