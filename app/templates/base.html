@@ -31,6 +31,24 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('students.list_student') }}">Student</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('students.program') }}">Programs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('students.instructors') }}">Instructors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('students.courses') }}">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('students.enrollment') }}">Enrollments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('students.tuition_fee') }}">Tuition Fee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('students.payment') }}">Payment</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               dropdown
@@ -45,23 +63,8 @@
             </ul>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
-  </nav>
-
-  <nav>
-    <a href="{{ url_for('students.home') }}">Trang chủ</a>
-    <a href="{{ url_for('students.list_student') }}">Student</a>
-    <a href="{{ url_for('students.program') }}">Programs</a>
-    <a href="{{ url_for('students.instructors') }}">Instructors</a>
-    <a href="{{ url_for('students.courses') }}">Courses</a>
-    <a href="{{ url_for('students.enrollment') }}">Enrollments</a>
-    <a href="{{ url_for('students.tuition_fee') }}">Tuition Fee</a>
-    <a href="{{ url_for('students.payment') }}">Payment</a>
   </nav>
 
   <!-- Main content -->
@@ -73,7 +76,8 @@
     <p>&copy; 2025 NEU</p>
   </footer>
   <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.js') }}"></script>
-  <script src="{{ url_for('static', filename='mystyle/styles.js') }}"></script>
+  <script src="{{ url_for('static', filename='mystyle/students.js') }}"></script>
+  <script src="{{ url_for('static', filename='mystyle/instructors.js') }}"></script>
 </body>
 
 </html>

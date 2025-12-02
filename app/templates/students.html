@@ -1,16 +1,20 @@
 {% extends "base.html" %} {% block content %}
 <h2>Student Information</h2>
 
-<div>
+<div class="m-3">
   <form class="d-flex" role="search" method="POST" action="{{ url_for('students.search_student') }} ">
     <input class="form-control me-2" type="search" placeholder="ID" aria-label="Search" name="student_id" />
     <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="name" />
-    <input class="form-control me-2" type="search" placeholder="Email" aria-label="Search" name="email" />
     <input class="form-control me-2" type="search" placeholder="ID Program" aria-label="Search" name="id_program" />
     <input class="form-control me-2" type="search" placeholder="Enrollment Year" aria-label="Search"
       name="enrollment_year" />
     <button class="btn btn-outline-success" type="submit">Search</button>
   </form>
+</div>
+
+<div class="m-3 d-grid gap-2">
+  <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalAddStudent">+ Add
+    Student</button>
 </div>
 
 <div>
@@ -52,10 +56,11 @@
         <td>{{ student.updated_at }}</td>
         <td>
           <!-- Button trigger modal -->
-          <button class="btn btn-primary btn-more" data-id="{{ student.student_id }}"
-            data-name="{{ student.full_name }}" data-email="{{ student.email }}"
+          <button class="btn btn-outline-info btn-more" data-bs-toggle="modal" data-bs-target="#modalMore"
+            data-id="{{ student.student_id }}" data-name="{{ student.full_name }}" data-email="{{ student.email }}"
             data-birth="{{ student.date_of_birth }}" data-phone="{{ student.phone_number }}"
-            data-address="{{ student.address }}">
+            data-address="{{ student.address }}" data-program="{{ student.program_id }}"
+            data-enrollment-year="{{ student.enrollment_year }}">
             More
           </button>
         </td>
@@ -80,6 +85,8 @@
         <p>Ngày sinh: <span id="modal-birth"></span></p>
         <p>Số điện thoại: <span id="modal-phone"></span></p>
         <p>Địa chỉ: <span id="modal-address"></span></p>
+        <p>Program: <span id="data-program"></span></p>
+        <p>Enrollment Year: <span id="data-enrollment-year"></span></p>
       </div>
       <div class="modal-footer">
         <button id="btnDelete" class="btn btn-danger">Delete</button>
@@ -105,6 +112,8 @@
         <label>Ngày sinh: <input type="date" id="update-birth"></label><br>
         <label>Số điện thoại: <input type="text" id="update-phone"></label><br>
         <label>Địa chỉ: <input type="text" id="update-address"></label><br>
+        <label>Program: <input type="text" id="update-program"></label><br>
+        <label>Enrollment Year: <input type="number" id="update-enrollment-year"></label><br>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" id="btnBack">Back</button>
@@ -132,6 +141,101 @@
     </div>
   </div>
 </div>
+
+<!-- Modal4: Add Student -->
+<form method="POST" action="{{url_for('students.add_student')}}">
+  <div class="modal fade" id="modalAddStudent" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Student</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Name and Birth -->
+          <div class="row g-2 mb-3">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name">
+                <label for="floatingInputGrid">Full Name</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="date" class="form-control" id="floatingInputGrid" placeholder="Birthday">
+                <label for="floatingInputGrid">Birthday</label>
+              </div>
+            </div>
+          </div>
+          <!-- Gender and Email -->
+          <div class="row g-2 mb-3">
+            <div class="col-md-3">
+              <div class="form-floating">
+                <select class="form-select" id="floatingSelectGrid">
+                  <option selected>-- Choose --</option>
+                  <option value="1">Male</option>
+                  <option value="2">Female</option>
+                  <option value="3">Other</option>
+                </select>
+                <label for="floatingSelectGrid">Gender</label>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <label for="floatingInputGrid">Email (name@example.com)</label>
+              </div>
+            </div>
+          </div>
+          <!-- Phone and Adress -->
+          <div class="row g-2 mb-3">
+            <div class="col-md-3">
+              <div class="form-floating">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
+                  <label for="floatingInputValue">Phone Number</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="form-floating">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
+                  <label for="floatingInputValue">Adress</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proram -->
+          <div class="row g-2 mb-3">
+            <div class="col-md-3">
+              <div class="form-floating">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
+                  <label for="floatingInputValue">Phone Number</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="form-floating">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
+                  <label for="floatingInputValue">Adress</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" id="btnAddStudent" type="submit">Add Student</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
 
 
 {% endblock %}

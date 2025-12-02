@@ -1,15 +1,19 @@
 # app/routes.py
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from app.models import get_all_students
 from app.models import get_students_by_info
 from app.models import del_student
+from app.models import update_student_by_id
+from app.models import get_instructors
+from app.models import del_instructor_by_id
+from app.models import update_instructor_by_id
 
-student_bp = Blueprint("students", __name__, url_prefix="/students", template_folder="templates")
+student_bp = Blueprint("students", __name__, url_prefix="/student_management", template_folder="templates")
 
 # File tạo các route liên quan đến sinh viên, hay gọi là các trang và các hành động CRUD
 
 # Route trang giới thiệu
-@student_bp.route("/intro")
+@student_bp.route("/")
 def intro():
     return render_template("intro.html")
 
@@ -19,7 +23,7 @@ def home():
     return render_template("home.html")
 
 # Route hiển thị danh sách sinh viên
-@student_bp.route("/")
+@student_bp.route("/list_student")
 def list_student():
     students = get_all_students()
     return render_template("students.html", students=students)
@@ -32,7 +36,8 @@ def program():
 #Route trang giảng viên
 @student_bp.route("/instructors")
 def instructors():
-    return render_template("instructors.html")
+    instructors = get_instructors()
+    return render_template("instructors.html", instructors=instructors)
 
 #Route trang khóa học
 @student_bp.route("/courses")
@@ -64,11 +69,10 @@ def search_student():
     if request.method == "POST":
         student_id = request.form.get("student_id")
         student_name = request.form.get("name")
-        student_email = request.form.get("email")
         student_id_program = request.form.get("id_program")
         student_enrollment_year = request.form.get("enrollment_year")
 
-        student = get_students_by_info(student_id, student_name, student_email, student_id_program, student_enrollment_year)
+        student = get_students_by_info(student_id, student_name, student_id_program, student_enrollment_year)
         return render_template("students.html", students=student)
     else:
         students = get_all_students()
@@ -78,4 +82,54 @@ def search_student():
 @student_bp.route("/delete/<student_id>", methods=["POST"])
 def delete_student(student_id):
     del_student(student_id)
-    return "", 200
+    return jsonify({"success": True, "message": "Student deleted successfully!"})
+
+# Route update student
+@student_bp.route("/update/<student_id>", methods=["POST"])
+def update_student(student_id):
+    data = request.get_json()
+    if not data:
+        return jsonify({"success": False, "message": "Missing JSON body"}), 400
+
+    # Map expected fields; keep names consistent with front-end
+    full_name = data.get('full_name')
+    date_of_birth = data.get('date_of_birth')
+    gender = data.get('gender')
+    email = data.get('email')
+    phone_number = data.get('phone_number')
+    address = data.get('address')
+    program_id = data.get('program_id')
+    enrollment_year = data.get('enrollment_year')
+
+    update_student_by_id(student_id, full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year)
+
+    return jsonify({"success": True, "message": "Student updated successfully!"})
+
+# Route thêm sinh viên
+@student_bp.route("/add_student", methods=["GET","POST"])
+def add_student():
+    if request.method == "POST":
+        None
+
+# Route xóa instructors
+@student_bp.route("/delete_instructor/<instructor_id>", methods=["POST"])
+def delete_instructor(instructor_id):
+    del_instructor_by_id(instructor_id)
+    return jsonify({"success": True, "message": "Instructor deleted successfully!"})
+
+
+# Route update instructors
+@student_bp.route("/instructors/update/<instructor_id>", methods=["POST"])
+def update_instructor(instructor_id):
+    data = request.get_json()
+    if not data:
+        return jsonify({"success": False, "message": "Missing JSON body"}), 400
+
+    full_name = data.get("full_name")
+    email = data.get("email")
+    specialization = data.get("specialization")
+    office_location = data.get("office_location")
+
+    update_instructor_by_id(instructor_id, full_name, email, specialization, office_location)
+
+    return jsonify({"success": True, "message": "Instructor updated successfully!"})
