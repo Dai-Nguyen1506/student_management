@@ -5,12 +5,28 @@
 
 <!-- Search form -->
 <div class="mb-3">
-    <form class="d-flex" method="POST" action="{{ url_for('students.instructors') }}">
+    <form class="d-flex" method="POST" action="{{ url_for('students.search_instructors') }}">
         <input class="form-control me-2" type="search" placeholder="ID" name="instructor_id">
         <input class="form-control me-2" type="search" placeholder="Name" name="name">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 </div>
+
+<div class="m-3 d-grid gap-2">
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalAddStudent">+ Add
+        instructor</button>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
 
 <!-- Instructor table -->
 {% for instructor in instructors %}
@@ -104,5 +120,52 @@
         </div>
     </div>
 </div>
+
+<!-- Modal3: Add Instructor Form -->
+<div class="modal fade" id="modalAddStudent" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New Instructor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form id="addStudentForm" role="addstudent" method="POST"
+                action="{{ url_for('students.add_new_instructor') }}">
+                <div class="modal-body">
+                    <!-- Name -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name"
+                            name="new_in" required>
+                        <label for="floatingInputGrid">Full Name</label>
+                    </div>
+                    <!-- Email -->
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                            name="new_ie" required>
+                        <label for="floatingInputGrid">Email (name@example.com)</label>
+                    </div>
+                    <!-- Specialization -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                            name="new_is" required>
+                        <label for="floatingInputGrid">Specialization</label>
+                    </div>
+                    <!-- Location Office -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                            name="new_il" required>
+                        <label for="floatingInputGrid">Location Office</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Add Instructor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

@@ -2,7 +2,7 @@
 <h2>Student Information</h2>
 
 <div class="m-3">
-  <form class="d-flex" role="search" method="POST" action="{{ url_for('students.search_student') }} ">
+  <form class="d-flex" role="search" method="POST" action="{{ url_for('students.search_student') }}">
     <input class="form-control me-2" type="search" placeholder="ID" aria-label="Search" name="student_id" />
     <input class="form-control me-2" type="search" placeholder="Name" aria-label="Search" name="name" />
     <input class="form-control me-2" type="search" placeholder="ID Program" aria-label="Search" name="id_program" />
@@ -17,6 +17,17 @@
     Student</button>
 </div>
 
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
 <div>
   <table class="table table-striped">
     <thead>
@@ -28,7 +39,7 @@
         <th scope="col">Email</th>
         <th scope="col">Phone</th>
         <th scope="col">Address</th>
-        <th scope="col">ID Program</th>
+        <th scope="col">Program</th>
         <th scope="col">Enrollment Year</th>
         <th scope="col">Created</th>
         <th scope="col">Updated</th>
@@ -50,7 +61,7 @@
         <td>{{ student.email }}</td>
         <td>{{ student.phone_number }}</td>
         <td>{{ student.address }}</td>
-        <td>{{ student.program_id }}</td>
+        <td>{{ student.program_name }}</td>
         <td>{{ student.enrollment_year }}</td>
         <td>{{ student.created_at }}</td>
         <td>{{ student.updated_at }}</td>
@@ -60,7 +71,7 @@
             data-id="{{ student.student_id }}" data-name="{{ student.full_name }}" data-email="{{ student.email }}"
             data-birth="{{ student.date_of_birth }}" data-phone="{{ student.phone_number }}"
             data-address="{{ student.address }}" data-program="{{ student.program_id }}"
-            data-enrollment-year="{{ student.enrollment_year }}">
+            data-enrollment-year="{{ student.enrollment_year }}" data-program-name="{{ student.program_name }}">
             More
           </button>
         </td>
@@ -79,13 +90,13 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <p>ID: <span id="modal-id"></span></p>
-        <p>Họ tên: <span id="modal-name"></span></p>
+        <p>ID Student: <span id="modal-id"></span></p>
+        <p>Full Name: <span id="modal-name"></span></p>
         <p>Email: <span id="modal-email"></span></p>
-        <p>Ngày sinh: <span id="modal-birth"></span></p>
-        <p>Số điện thoại: <span id="modal-phone"></span></p>
-        <p>Địa chỉ: <span id="modal-address"></span></p>
-        <p>Program: <span id="data-program"></span></p>
+        <p>Birthday: <span id="modal-birth"></span></p>
+        <p>Phone Number: <span id="modal-phone"></span></p>
+        <p>Adress: <span id="modal-address"></span></p>
+        <p>Program: <span id="data-program-name"></span> - <span id="data-program"></span></p>
         <p>Enrollment Year: <span id="data-enrollment-year"></span></p>
       </div>
       <div class="modal-footer">
@@ -106,14 +117,14 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <label>ID: <input type="text" id="update-id" readonly></label><br>
-        <label>Họ tên: <input type="text" id="update-name"></label><br>
+
+        <label>Full Name: <input type="text" id="update-name"></label><br>
         <label>Email: <input type="email" id="update-email"></label>
-        <label>Ngày sinh: <input type="date" id="update-birth"></label><br>
-        <label>Số điện thoại: <input type="text" id="update-phone"></label><br>
-        <label>Địa chỉ: <input type="text" id="update-address"></label><br>
-        <label>Program: <input type="text" id="update-program"></label><br>
+        <label>Birthday: <input type="date" id="update-birth"></label><br>
+        <label>Phone Number: <input type="text" id="update-phone"></label><br>
+        <label>Address: <input type="text" id="update-address"></label><br>
         <label>Enrollment Year: <input type="number" id="update-enrollment-year"></label><br>
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" id="btnBack">Back</button>
@@ -142,27 +153,29 @@
   </div>
 </div>
 
-<!-- Modal4: Add Student -->
-<form method="POST" action="{{url_for('students.add_student')}}">
-  <div class="modal fade" id="modalAddStudent" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add New Student</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
+<!-- Modal4: Add Student Form -->
+<div class="modal fade" id="modalAddStudent" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Student</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <form id="addStudentForm" role="addstudent" method="POST" action="{{ url_for('students.add_new_student') }}">
         <div class="modal-body">
           <!-- Name and Birth -->
           <div class="row g-2 mb-3">
             <div class="col-md">
               <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name">
-                <label for="floatingInputGrid">Full Name</label>
+                <input type="text" class="form-control" id="floatingInputGrid" placeholder="Full Name" name="new_sn">
+                <label for="floatingInputGrid" required>Full Name</label>
               </div>
             </div>
             <div class="col-md">
               <div class="form-floating">
-                <input type="date" class="form-control" id="floatingInputGrid" placeholder="Birthday">
+                <input repuired type="date" class="form-control" id="floatingInputGrid" placeholder="Birthday"
+                  name="new_sb">
                 <label for="floatingInputGrid">Birthday</label>
               </div>
             </div>
@@ -171,18 +184,19 @@
           <div class="row g-2 mb-3">
             <div class="col-md-3">
               <div class="form-floating">
-                <select class="form-select" id="floatingSelectGrid">
-                  <option selected>-- Choose --</option>
-                  <option value="1">Male</option>
-                  <option value="2">Female</option>
-                  <option value="3">Other</option>
+                <select class="form-select" id="floatingSelectGrid" name="new_sg">
+                  <option value="Other">-- Choose --</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
                 </select>
                 <label for="floatingSelectGrid">Gender</label>
               </div>
             </div>
             <div class="col-md-9">
               <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                  name="new_se" required>
                 <label for="floatingInputGrid">Email (name@example.com)</label>
               </div>
             </div>
@@ -192,7 +206,8 @@
             <div class="col-md-3">
               <div class="form-floating">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
+                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com"
+                    name="new_sp">
                   <label for="floatingInputValue">Phone Number</label>
                 </div>
               </div>
@@ -200,42 +215,46 @@
             <div class="col-md-9">
               <div class="form-floating">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
+                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com"
+                    name="new_sa">
                   <label for="floatingInputValue">Adress</label>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Proram -->
+          <!-- Proram and Enrollment -->
           <div class="row g-2 mb-3">
             <div class="col-md-3">
               <div class="form-floating">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
-                  <label for="floatingInputValue">Phone Number</label>
+                  <input type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com"
+                    name="new_sy" required>
+                  <label for="floatingInputGrid">Enrollment Year</label>
                 </div>
               </div>
             </div>
             <div class="col-md-9">
               <div class="form-floating">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInputValue" placeholder="name@example.com">
-                  <label for="floatingInputValue">Adress</label>
-                </div>
+                <select class="form-select" id="floatingSelectGrid" name="new_spro" required>
+                  <option value="" selected>-- Choose Program --</option>
+                  {% for p in programs %}
+                  <option value="{{ p.program_id }}">{{ p.program_name }}</option>
+                  {% endfor %}
+                </select>
+                <label for="floatingSelectGrid">Program</label>
               </div>
             </div>
           </div>
-
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
           <button class="btn btn-primary" id="btnAddStudent" type="submit">Add Student</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
-</form>
+</div>
 
 
 {% endblock %}

@@ -1,12 +1,18 @@
 # app/routes.py
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, flash
 from app.models import get_all_students
 from app.models import get_students_by_info
 from app.models import del_student
 from app.models import update_student_by_id
+from app.models import add_student
 from app.models import get_instructors
+from app.models import get_instructors_by_info
 from app.models import del_instructor_by_id
 from app.models import update_instructor_by_id
+from app.models import add_instructor
+from app.models import get_all_program
+from app.models import is_email_student_exist
+from app.models import is_email_instructor_exist
 
 student_bp = Blueprint("students", __name__, url_prefix="/student_management", template_folder="templates")
 
@@ -26,7 +32,8 @@ def home():
 @student_bp.route("/list_student")
 def list_student():
     students = get_all_students()
-    return render_template("students.html", students=students)
+    programs = get_all_program()
+    return render_template("students.html", students=students, programs=programs)
 
 #Route trang chương trình đào tạo
 @student_bp.route("/program")
@@ -63,7 +70,9 @@ def payment():
 
 
 # Các route khác liên quan đến sinh viên có thể được thêm vào đây
-# Route hiển thị tìm kiếm sinh viên theo ID
+
+# Route Students -----------------------------------------------------------------------------------------------------------
+
 @student_bp.route("/search", methods=["GET", "POST"])
 def search_student():
     if request.method == "POST":
@@ -98,18 +107,62 @@ def update_student(student_id):
     email = data.get('email')
     phone_number = data.get('phone_number')
     address = data.get('address')
-    program_id = data.get('program_id')
     enrollment_year = data.get('enrollment_year')
 
-    update_student_by_id(student_id, full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year)
+    update_student_by_id(student_id, full_name, date_of_birth, gender, email, phone_number, address, enrollment_year)
 
     return jsonify({"success": True, "message": "Student updated successfully!"})
 
 # Route thêm sinh viên
 @student_bp.route("/add_student", methods=["GET","POST"])
-def add_student():
+def add_new_student():
+    name = request.form.get("new_sn")
+    birth = request.form.get("new_sb")
+    gender = request.form.get("new_sg")
+    email = request.form.get("new_se")
+    phone = request.form.get("new_sp")
+    address = request.form.get("new_sa")
+    enrollment_year = request.form.get("new_sy")
+    program = request.form.get("new_spro")
+
+    if birth == "":
+        birth = None
+
+    if phone == "":
+        phone = None
+
+    if address == "":
+        address = None
+
+        # Kiểm tra email
+    if is_email_student_exist(email):
+        flash("Email đã tồn tại, vui lòng nhập email khác!", "danger")
+        return redirect(url_for('students.list_student'))
+    
+    try:
+        enrollment_year = int(enrollment_year)
+    except:
+        flash("Yêu cầu nhập đúng thông tin", "danger")
+        return redirect(url_for('students.list_student'))
+
+    add_student(name, email, program, enrollment_year, birth, gender = gender, phone = phone, address = address)
+    flash("Thêm sinh viên thành công!", "success")
+    return redirect(url_for('students.list_student'))
+
+# Route Instructors -----------------------------------------------------------------------------------------------------------
+
+# Route find instructors
+@student_bp.route("/search_instructor", methods=["GET", "POST"])
+def search_instructors():
     if request.method == "POST":
-        None
+        instructor_id = request.form.get("instructor_id")
+        instructor_name = request.form.get("name")
+
+        instructors = get_instructors_by_info(instructor_id, instructor_name)
+        return render_template("instructors.html", instructors = instructors)
+    else:
+        instructors = get_instructors()
+        return render_template('instructors.html', instructors = instructors)
 
 # Route xóa instructors
 @student_bp.route("/delete_instructor/<instructor_id>", methods=["POST"])
@@ -131,5 +184,24 @@ def update_instructor(instructor_id):
     office_location = data.get("office_location")
 
     update_instructor_by_id(instructor_id, full_name, email, specialization, office_location)
-
     return jsonify({"success": True, "message": "Instructor updated successfully!"})
+
+# Route add instructor
+@student_bp.route("/add_instructor", methods=["GET","POST"])
+def add_new_instructor():
+    name = request.form.get("new_in")
+    email = request.form.get("new_ie")
+    special = request.form.get("new_is")
+    locate = request.form.get("new_il")
+
+        # Kiểm tra email
+    if is_email_instructor_exist(email):
+        flash("Email đã tồn tại, vui lòng nhập email khác!", "danger")
+        return redirect(url_for('students.instructors'))
+
+    add_instructor(name, email, special, locate)
+    flash("Thêm Instructor thành công!", "success")
+    return redirect(url_for('students.instructors'))
+
+# Route Programs  -----------------------------------------------------------------------------------------------------------
+

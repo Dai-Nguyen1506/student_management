@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const address = source.getAttribute('data-address');
     const program = source.getAttribute('data-program');
     const enrollmentYear = source.getAttribute('data-enrollment-year');
+    const programName = source.getAttribute('data-program-name');
 
     const setText = (idEl, value) => {
       const el = document.getElementById(idEl);
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setText('modal-address', address);
     setText('data-program', program);
     setText('data-enrollment-year', enrollmentYear);
+    setText('data-program-name', programName);
   }
 
   if (modalMoreEl) {
@@ -64,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function () {
         ['update-phone', 'modal-phone'],
         ['update-address', 'modal-address'],
         ['update-program', 'data-program'],
-        ['update-enrollment-year', 'data-enrollment-year']
+        ['update-enrollment-year', 'data-enrollment-year'],
+        ['update-program-name', 'data-program-name'],
       ];
 
       inputs.forEach(([inputId, srcId]) => {
@@ -96,8 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         birth: document.getElementById('update-birth') ? document.getElementById('update-birth').value : '',
         phone: document.getElementById('update-phone') ? document.getElementById('update-phone').value : '',
         address: document.getElementById('update-address') ? document.getElementById('update-address').value : '',
-        program: document.getElementById('update-program') ? document.getElementById('update-program').value : '',
-        enrollmentYear: document.getElementById('update-enrollment-year') ? document.getElementById('update-enrollment-year').value : ''
+        enrollmentYear: document.getElementById('update-enrollment-year') ? document.getElementById('update-enrollment-year').value : '',
       };
 
       // Build payload and persist to server
@@ -129,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (document.getElementById('modal-birth')) document.getElementById('modal-birth').textContent = vals.birth;
             if (document.getElementById('modal-phone')) document.getElementById('modal-phone').textContent = vals.phone;
             if (document.getElementById('modal-address')) document.getElementById('modal-address').textContent = vals.address;
-            if (document.getElementById('data-program')) document.getElementById('data-program').textContent = vals.program;
             if (document.getElementById('data-enrollment-year')) document.getElementById('data-enrollment-year').textContent = vals.enrollmentYear;
 
             if (modalUpdate) modalUpdate.hide();
@@ -188,5 +189,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-
-
