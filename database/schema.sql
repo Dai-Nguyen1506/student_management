@@ -86,7 +86,6 @@ CREATE TABLE enrollment (
     course_id INT NOT NULL,
     semester ENUM('Spring','Summer','Fall') DEFAULT 'Spring',
     academic_year YEAR,
-    enrolled_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     grade DECIMAL(5,2) DEFAULT NULL,
     status ENUM('Enrolled','Completed','Withdrawn') DEFAULT 'Enrolled',
     is_deleted TINYINT(1) DEFAULT 0,
@@ -110,11 +109,10 @@ CREATE TABLE tuition_fee (
     total_amount DECIMAL(10,2) NOT NULL,
     amount_paid DECIMAL(10,2) DEFAULT 0,
     payment_status ENUM('Unpaid','Partially Paid','Fully Paid') DEFAULT 'Unpaid',
-    due_date DATE DEFAULT NULL,
     is_deleted TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CHECK (amount_paid >= 0),
+    CHECK (amount_paid >= 0 AND total_amount >= 0),
     CONSTRAINT fk_fee_student
       FOREIGN KEY (student_id) REFERENCES student(student_id)
       ON DELETE CASCADE ON UPDATE CASCADE,
