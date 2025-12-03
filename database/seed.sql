@@ -1,234 +1,271 @@
--- Auto-generated seed data
+-- Seed data for school_db
 USE school_db;
+-- PROGRAMS (3)
+INSERT INTO program (program_name, department, duration_years, degree_type)
+VALUES
+('Data Science', 'Computer Science', 2, 'Master'),
+('Artificial Intelligence', 'Computer Science', 2, 'Master'),
+('Computer Science', 'Computer Science', 4, 'Bachelor');
 
--- PROGRAMS
-INSERT INTO program(program_name, department, duration_years, degree_type) VALUES ('Psychologist, educational', 'South', 3, 'PhD');
-INSERT INTO program(program_name, department, duration_years, degree_type) VALUES ('Audiological scientist', 'Improve', 4, 'Bachelor');
-INSERT INTO program(program_name, department, duration_years, degree_type) VALUES ('Chief of Staff', 'Foot', 3, 'Bachelor');
-INSERT INTO program(program_name, department, duration_years, degree_type) VALUES ('Theatre stage manager', 'Attack', 4, 'PhD');
-INSERT INTO program(program_name, department, duration_years, degree_type) VALUES ('Teacher, music', 'Development', 3, 'Bachelor');
+-- INSTRUCTORS (11)
+INSERT INTO instructor (full_name, email, specialization, office_location)
+VALUES
+('Dr. Alice Nguyen', 'alice.nguyen@example.edu', 'Machine Learning', 'A201'),
+('Dr. Bob Smith', 'bob.smith@example.edu', 'Data Engineering', 'A202'),
+('Dr. Carol Lee', 'carol.lee@example.edu', 'Computer Vision', 'A203'),
+('Dr. Daniel Kim', 'daniel.kim@example.edu', 'Natural Language Processing', 'A204'),
+('Dr. Eva Martinez', 'eva.martinez@example.edu', 'Algorithms', 'A205'),
+('Dr. Faisal Khan', 'faisal.khan@example.edu', 'Databases', 'A206'),
+('Dr. Grace Park', 'grace.park@example.edu', 'Robotics', 'A207'),
+('Dr. Hector Alvarez', 'hector.alvarez@example.edu', 'Cloud Computing', 'A208'),
+('Dr. Irene Chen', 'irene.chen@example.edu', 'Software Engineering', 'A209'),
+('Dr. Jason Wright', 'jason.wright@example.edu', 'Cybersecurity', 'A210'),
+('Dr. Karen Ochoa', 'karen.ochoa@example.edu', 'Reinforcement Learning', 'A211');
 
--- INSTRUCTORS
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('Matthew Alvarado', 'jacquelinegreen@example.org', 'Newspaper', 'Room 261');
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('Vanessa Johnson', 'wrightcharles@example.org', 'Necessary', 'Room 333');
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('Douglas Ellison', 'ethanschwartz@example.com', 'Risk', 'Room 140');
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('Stephen Anderson', 'valerie20@example.net', 'Job', 'Room 375');
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('William Murray', 'xowen@example.com', 'Who', 'Room 279');
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('Brian Garcia', 'ccoleman@example.com', 'Risk', 'Room 206');
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('Steven Roberts', 'theodore50@example.com', 'Tv', 'Room 145');
-INSERT INTO instructor(full_name, email, specialization, office_location) VALUES ('Christopher Price', 'tyronesmith@example.com', 'Edge', 'Room 333');
+-- COURSES (18)
+INSERT INTO course (course_name, credit_hours, semester_offered, program_id, instructor_id)
+VALUES
+('Intro to Data Science', 3, 'Spring', 1, 2),
+('Applied Machine Learning', 3, 'Fall', 1, 1),
+('Data Visualization', 3, 'Summer', 1, 2),
+('Capstone Project', 3, 'Fall', 1, 1),
+('Cloud Platforms', 3, 'Summer', 1, 8),
+('Big Data Processing', 3, 'Fall', 1, 2),
+('Foundations of AI', 3, 'Spring', 2, 4),
+('Deep Learning', 3, 'Fall', 2, 3),
+('NLP Techniques', 3, 'Summer', 2, 4),
+('Advanced Reinforcement Learning', 3, 'Spring', 2, 11),
+('AI Ethics', 2, 'Fall', 2, 11),
+('Intro to Programming', 4, 'Spring', 3, 9),
+('Algorithms and Data Structures', 3, 'Fall', 3, 5),
+('Operating Systems', 3, 'Spring', 3, 10),
+('Databases', 3, 'Summer', 3, 6),
+('Computer Networks', 3, 'Fall', 3, 10),
+('Robotics I', 3, 'Spring', 3, 7),
+('Software Engineering Practices', 3, 'Summer', 3, 9);
 
--- STUDENTS
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Ethan Travis', '2003-02-09', 'Other', 'laurie59@example.com', '7786184012', '67982 Elizabeth Spurs, Ballardton, GU 67848', 3, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Elizabeth Wright', '2007-11-18', 'Female', 'sandra47@example.com', '211.944.6197', '6470 Alan Gateway Apt. 850, New Julieville, NM 64011', 3, 2024);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Jessica Lambert', '2005-01-02', 'Female', 'gperez@example.org', '(887)451-0846x558', '18267 Perry Lock, East Michael, FM 75319', 4, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Susan May', '2004-08-28', 'Male', 'eanderson@example.net', '2857224024', '63859 April Wells Suite 257, Vaughanfort, SC 34218', 5, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Stephanie Griffin', '2007-07-26', 'Other', 'kimberlyvalentine@example.org', '+1-941-360-1527', '95592 Kathy Circles Apt. 305, Johnsonside, VT 25007', 4, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Cheryl Potts', '2005-03-31', 'Female', 'austinmartinez@example.org', '(612)460-7023x381', '48565 Donald Crossing Apt. 377, Kennethborough, CA 88832', 2, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('James Wood', '2006-05-09', 'Female', 'sguzman@example.org', '362-391-9169x094', '1305 Harris Point Suite 491, Andreview, ID 09583', 5, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Zachary Williams', '1999-12-06', 'Female', 'myersashley@example.net', '491-881-4561', '2493 Duffy Square, New Garrett, CA 38205', 5, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Michael Randall', '2006-06-04', 'Male', 'thompsonlaurie@example.com', '398.722.1492x7769', '742 Jacob Via Suite 556, New Victoria, PW 25758', 3, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Tina Robinson', '2000-06-18', 'Male', 'pwhite@example.org', '870.588.9861', '4367 Salinas Valleys Apt. 116, New Annmouth, CT 86798', 1, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Kristen Luna', '2002-09-18', 'Female', 'zdelgado@example.org', '001-401-619-9424x44118', '366 Kathy Unions Suite 197, Michaelborough, VT 31215', 4, 2024);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Kenneth Carter', '2002-02-10', 'Other', 'kelly46@example.net', '(417)605-8519x71892', '30598 Michael Greens Suite 686, Port Charles, SC 09300', 5, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Daniel Newton', '2005-04-27', 'Male', 'smithvalerie@example.org', '(477)484-6801', '27337 Pope Dale Suite 328, Lake Timothyburgh, SC 14513', 4, 2024);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Kathryn Norris', '2000-08-11', 'Female', 'johnsonjacqueline@example.net', '001-353-469-1937', '45120 Patricia Ferry Apt. 851, Kristenstad, KY 31453', 5, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Jeffrey Jones', '2000-10-01', 'Female', 'abigail25@example.com', '(573)761-7637x47924', '2867 Hayley Causeway Apt. 938, Blevinston, GU 08343', 4, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Jennifer Anderson', '2004-09-15', 'Female', 'michael41@example.net', '001-347-471-1141', '990 Lisa Village, North Nicholasberg, FL 20857', 2, 2024);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Erin Fields', '2006-08-19', 'Female', 'tthomas@example.org', '+1-335-469-1023x80455', '11773 Jillian Route, Davidberg, LA 21720', 5, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Jennifer Young', '2003-09-28', 'Other', 'emilyhall@example.org', '4792993634', '7056 Chandler Junction Suite 360, Lake Nicolas, ND 87053', 1, 2024);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Neil Thompson', '2002-03-10', 'Male', 'wsmith@example.org', '(263)363-1064x3212', '057 Stewart Spring Apt. 476, South Sherrytown, ME 46550', 2, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Shirley Tyler', '2007-08-19', 'Female', 'adriana89@example.com', '001-454-495-7544x505', 'USCGC Garcia, FPO AE 96096', 5, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Kevin Holland', '2007-02-08', 'Other', 'timstewart@example.net', '928-751-1954x68603', '702 Garcia Springs Suite 167, New Paula, NV 33718', 4, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Bryan Strickland', '2004-01-01', 'Other', 'mcdonaldchristopher@example.net', '+1-437-411-3029x61964', '7700 Carolyn Stream, Melissaview, ND 84407', 3, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Emily Martin', '2007-06-23', 'Female', 'nathan83@example.org', '849.669.6569x33508', '02485 Paula Crossroad Suite 289, Bradleyport, NH 57956', 3, 2023);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Joel Vance', '2000-01-23', 'Other', 'meganwells@example.org', '001-427-668-5594x8724', '3160 Lee Brook Apt. 833, Port Ashleyside, MP 90129', 2, 2024);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Vickie Park', '2006-03-22', 'Female', 'dweeks@example.org', '(216)458-8566', 'USNS Molina, FPO AA 40255', 4, 2024);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Stacey Lee', '2004-05-01', 'Female', 'kimberlynielsen@example.net', '+1-310-298-3113x3082', '5357 Holland Parkways Apt. 866, Turnermouth, VT 29660', 5, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Steven Wallace', '2000-05-31', 'Female', 'jesse31@example.com', '296-379-9251', '6221 Tate Mill Apt. 451, Jillianport, LA 79787', 1, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Brandon Horton', '2000-08-26', 'Male', 'gerald11@example.net', '+1-383-502-2679x22600', '7561 Andrea Inlet Suite 282, Barrettshire, NM 55316', 5, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Steven Burns', '2001-11-26', 'Female', 'william03@example.net', '935.912.9529x803', '251 Adam Fields, Petersstad, LA 12274', 5, 2022);
-INSERT INTO student(full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year) VALUES ('Mary Macdonald', '2006-11-29', 'Male', 'nancywalton@example.net', '691.750.5721', '451 Atkinson Passage, West Audreyshire, HI 64202', 2, 2024);
+-- STUDENTS (30)
+INSERT INTO student (full_name, date_of_birth, gender, email, phone_number, address, program_id, enrollment_year)
+VALUES
+('Nguyen Van A', '2002-05-10', 'Male', 's1@example.edu', '0810000001', 'Address 1', 1, 2023),
+('Tran Thi B', '2003-07-21', 'Female', 's2@example.edu', '0810000002', 'Address 2', 2, 2023),
+('Le Van C', '2003-01-15', 'Male', 's3@example.edu', '0810000003', 'Address 3', 3, 2024),
+('Pham Thi D', '2004-03-30', 'Female', 's4@example.edu', '0810000004', 'Address 4', 1, 2024),
+('Hoang Van E', '2002-11-02', 'Male', 's5@example.edu', '0810000005', 'Address 5', 2, 2025),
+('Bui Thi F', '2001-12-12', 'Female', 's6@example.edu', '0810000006', 'Address 6', 3, 2023),
+('Vu Van G', '2003-09-09', 'Male', 's7@example.edu', '0810000007', 'Address 7', 1, 2025),
+('Do Thi H', '2004-02-02', 'Female', 's8@example.edu', '0810000008', 'Address 8', 2, 2024),
+('Ngo Van I', '2003-08-08', 'Male', 's9@example.edu', '0810000009', 'Address 9', 3, 2023),
+('Ly Thi J', '2004-04-04', 'Female', 's10@example.edu', '0810000010', 'Address 10', 1, 2025),
+('Tran Van K', '2002-06-06', 'Male', 's11@example.edu', '0810000011', 'Address 11', 3, 2024),
+('Pham Van L', '2003-10-10', 'Male', 's12@example.edu', '0810000012', 'Address 12', 2, 2023),
+('Le Thi M', '2004-01-20', 'Female', 's13@example.edu', '0810000013', 'Address 13', 1, 2024),
+('Nguyen Thi N', '2003-05-05', 'Female', 's14@example.edu', '0810000014', 'Address 14', 3, 2025),
+('Ho Van O', '2002-09-17', 'Male', 's15@example.edu', '0810000015', 'Address 15', 2, 2023),
+('Bach Thi P', '2003-11-11', 'Female', 's16@example.edu', '0810000016', 'Address 16', 1, 2024),
+('Do Van Q', '2004-06-06', 'Male', 's17@example.edu', '0810000017', 'Address 17', 3, 2023),
+('Pham Thi R', '2002-08-08', 'Female', 's18@example.edu', '0810000018', 'Address 18', 2, 2025),
+('Le Van S', '2001-07-07', 'Male', 's19@example.edu', '0810000019', 'Address 19', 3, 2024),
+('Nguyen Van T', '2003-03-03', 'Male', 's20@example.edu', '0810000020', 'Address 20', 1, 2023),
+('Tran Thi U', '2004-09-09', 'Female', 's21@example.edu', '0810000021', 'Address 21', 2, 2024),
+('Ho Van V', '2002-02-02', 'Male', 's22@example.edu', '0810000022', 'Address 22', 3, 2025),
+('Bui Thi W', '2003-12-12', 'Female', 's23@example.edu', '0810000023', 'Address 23', 1, 2023),
+('Vu Van X', '2004-10-10', 'Male', 's24@example.edu', '0810000024', 'Address 24', 2, 2024),
+('Do Thi Y', '2003-02-14', 'Female', 's25@example.edu', '0810000025', 'Address 25', 3, 2023),
+('Ngo Van Z', '2002-12-30', 'Male', 's26@example.edu', '0810000026', 'Address 26', 1, 2025),
+('Ly Van AA', '2003-04-14', 'Male', 's27@example.edu', '0810000027', 'Address 27', 2, 2024),
+('Pham Thi BB', '2004-11-11', 'Female', 's28@example.edu', '0810000028', 'Address 28', 3, 2023),
+('Le Van CC', '2001-01-01', 'Male', 's29@example.edu', '0810000029', 'Address 29', 1, 2023),
+('Nguyen Thi DD', '2002-07-07', 'Female', 's30@example.edu', '0810000030', 'Address 30', 2, 2025);
 
--- COURSES
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Synergistic asynchronous array', 2, '2', 5);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Synergistic hybrid focus group', 3, 'Summer', 2);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Digitized explicit migration', 4, 'Summer', 1);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Multi-tiered static protocol', 4, '1', 2);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Reduced 5thgeneration encryption', 4, '2', 2);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Re-engineered radical Graphic Interface', 3, 'Summer', 1);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Upgradable client-driven service-desk', 2, '1', 3);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('User-centric mobile migration', 4, 'Summer', 1);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Cloned coherent success', 2, '2', 3);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Team-oriented zero-defect methodology', 3, 'Summer', 3);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Fully-configurable web-enabled migration', 2, 'Summer', 2);
-INSERT INTO course(course_name, credit_hours, semester_offered, program_id) VALUES ('Configurable dynamic model', 3, '2', 5);
+-- ADVISOR ASSIGNMENTS (20)
+INSERT INTO advisor_assignment (instructor_id, student_id, assigned_date)
+VALUES
+(1, 1, '2023-09-01'),
+(2, 2, '2023-09-01'),
+(3, 3, '2024-09-01'),
+(4, 4, '2024-09-01'),
+(1, 5, '2025-09-01'),
+(2, 6, '2023-09-10'),
+(3, 7, '2025-09-10'),
+(4, 8, '2024-09-10'),
+(5, 9, '2023-09-15'),
+(6, 10, '2025-09-15'),
+(7, 11, '2024-09-20'),
+(8, 12, '2023-09-20'),
+(9, 13, '2024-09-21'),
+(10, 14, '2025-09-21'),
+(11, 15, '2023-09-22'),
+(1, 16, '2024-09-23'),
+(2, 17, '2023-09-24'),
+(3, 18, '2025-09-24'),
+(4, 19, '2024-09-25'),
+(5, 20, '2023-09-25');
 
--- ENROLLMENTS
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (23, 6, '1', 2023, 3.65, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (10, 9, '1', 2024, 3.65, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (27, 10, '2', 2023, 3.78, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (21, 10, '1', 2023, 2.38, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (14, 1, 'Summer', 2024, 2.61, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (20, 11, 'Summer', 2023, 2.89, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (26, 2, '1', 2023, 3.27, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (18, 4, '2', 2023, 2.49, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (17, 8, 'Summer', 2024, 3.98, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (9, 10, '1', 2023, 3.93, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (29, 6, 'Summer', 2024, 3.68, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (4, 11, '2', 2024, 2.54, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (4, 8, 'Summer', 2024, 3.46, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (25, 9, '1', 2024, 3.75, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (5, 11, 'Summer', 2023, 3.09, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (20, 6, 'Summer', 2023, 3.12, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (6, 1, '1', 2023, 2.11, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (21, 9, 'Summer', 2024, 3.32, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (19, 12, 'Summer', 2023, 2.61, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (12, 11, '2', 2023, 3.81, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (11, 4, '2', 2023, 2.26, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (13, 10, '2', 2024, 2.86, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (25, 3, '1', 2024, 2.49, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (26, 9, 'Summer', 2024, 3.67, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (5, 3, '2', 2023, 3.85, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (20, 11, '1', 2024, 3.74, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (17, 3, '1', 2024, 3.97, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (13, 4, '1', 2023, 2.19, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (3, 7, 'Summer', 2024, 3.09, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (23, 12, '2', 2023, 2.25, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (20, 8, '2', 2023, 3.16, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (8, 12, '1', 2024, 2.74, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (13, 7, 'Summer', 2023, 3.53, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (11, 4, 'Summer', 2024, 3.6, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (16, 2, '1', 2023, 2.57, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (23, 10, '1', 2024, 2.98, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (16, 5, '2', 2023, 3.7, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (6, 10, '1', 2023, 2.65, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (18, 3, '2', 2024, 3.67, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (10, 1, '1', 2023, 3.73, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (29, 6, '1', 2023, 3.5, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (25, 8, 'Summer', 2024, 3.0, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (23, 9, 'Summer', 2024, 2.27, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (30, 3, '1', 2023, 3.4, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (30, 11, 'Summer', 2024, 3.34, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (12, 10, '1', 2023, 2.55, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (2, 11, '1', 2023, 3.86, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (3, 8, 'Summer', 2024, 3.59, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (19, 4, 'Summer', 2023, 3.12, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (15, 9, 'Summer', 2024, 3.33, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (3, 2, '2', 2023, 2.64, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (4, 10, 'Summer', 2023, 3.52, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (2, 1, '1', 2024, 3.33, 'Completed');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (15, 4, 'Summer', 2023, 2.61, 'Withdrawn');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (9, 12, '1', 2023, 2.48, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (21, 8, '1', 2023, 2.05, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (1, 2, '2', 2024, 2.6, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (24, 4, '1', 2024, 2.04, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (7, 10, '1', 2024, 3.15, 'Enrolled');
-INSERT INTO enrollment(student_id, course_id, semester, academic_year, grade, status) VALUES (2, 3, '2', 2023, 3.05, 'Completed');
+-- TUITION FEES (30)
+INSERT INTO tuition_fee (student_id, academic_year, semester, total_amount, amount_paid, payment_status)
+VALUES
+(1, 2025, 'Spring', 1500.00, 1500.00, 'Fully Paid'),
+(1, 2025, 'Fall', 1500.00, 100.00, 'Partially Paid'),
+(2, 2025, 'Spring', 1400.00, 0.00, 'Unpaid'),
+(3, 2025, 'Summer', 1200.00, 200.00, 'Partially Paid'),
+(4, 2025, 'Fall', 1500.00, 300.00, 'Partially Paid'),
+(5, 2025, 'Fall', 1600.00, 200.00, 'Partially Paid'),
+(6, 2025, 'Spring', 1500.00, 0.00, 'Unpaid'),
+(7, 2025, 'Fall', 1600.00, 1600.00, 'Fully Paid'),
+(8, 2025, 'Summer', 1200.00, 600.00, 'Partially Paid'),
+(9, 2025, 'Spring', 1500.00, 400.00, 'Partially Paid'),
+(10, 2025, 'Fall', 1600.00, 0.00, 'Unpaid'),
+(11, 2025, 'Summer', 1200.00, 0.00, 'Unpaid'),
+(12, 2025, 'Spring', 1400.00, 700.00, 'Partially Paid'),
+(13, 2026, 'Spring', 1500.00, 0.00, 'Unpaid'),
+(14, 2025, 'Fall', 1600.00, 100.00, 'Partially Paid'),
+(15, 2025, 'Spring', 1400.00, 0.00, 'Unpaid'),
+(16, 2025, 'Summer', 1200.00, 1200.00, 'Fully Paid'),
+(17, 2025, 'Fall', 1500.00, 0.00, 'Unpaid'),
+(18, 2025, 'Fall', 1600.00, 400.00, 'Partially Paid'),
+(19, 2025, 'Spring', 1500.00, 500.00, 'Partially Paid'),
+(20, 2026, 'Spring', 1500.00, 0.00, 'Unpaid'),
+(21, 2025, 'Summer', 1200.00, 600.00, 'Partially Paid'),
+(22, 2025, 'Fall', 1600.00, 600.00, 'Partially Paid'),
+(23, 2025, 'Spring', 1500.00, 0.00, 'Unpaid'),
+(24, 2025, 'Summer', 1200.00, 120.00, 'Partially Paid'),
+(25, 2025, 'Spring', 1500.00, 50.00, 'Partially Paid'),
+(26, 2025, 'Fall', 1600.00, 800.00, 'Partially Paid'),
+(27, 2026, 'Fall', 1600.00, 0.00, 'Unpaid'),
+(28, 2025, 'Summer', 1200.00, 1200.00, 'Fully Paid'),
+(29, 2025, 'Spring', 1500.00, 0.00, 'Unpaid');
 
--- TUITION FEES
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (29, 2024, 'Summer', 1200, 1200, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (10, 2023, '2', 1200, 1200, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (27, 2023, '2', 500, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (10, 2024, '2', 1200, 1200, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (14, 2024, '1', 500, 500, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (10, 2024, '2', 1200, 600.0, 'Partially Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (6, 2024, 'Summer', 800, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (8, 2024, '2', 500, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (14, 2024, '1', 1500, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (25, 2023, '2', 500, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (12, 2024, '2', 800, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (11, 2024, '1', 1200, 1200, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (8, 2023, '1', 1500, 1500, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (30, 2023, '1', 500, 250.0, 'Partially Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (28, 2024, '2', 1500, 1500, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (26, 2024, '2', 800, 800, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (12, 2023, '1', 1200, 1200, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (28, 2023, 'Summer', 1200, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (24, 2023, '2', 1200, 1200, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (30, 2024, 'Summer', 1500, 1500, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (27, 2023, '2', 500, 250.0, 'Partially Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (14, 2024, '1', 800, 400.0, 'Partially Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (10, 2023, 'Summer', 800, 400.0, 'Partially Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (25, 2023, '2', 1200, 600.0, 'Partially Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (4, 2024, 'Summer', 1500, 1500, 'Fully Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (8, 2024, '2', 500, 250.0, 'Partially Paid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (30, 2023, 'Summer', 800, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (26, 2024, 'Summer', 1500, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (1, 2023, '2', 1200, 0, 'Unpaid');
-INSERT INTO tuition_fee(student_id, academic_year, semester, total_amount, amount_paid, payment_status) VALUES (30, 2024, '1', 800, 800, 'Fully Paid');
+-- PAYMENTS (50)
+INSERT INTO payment (fee_id, payment_date, amount, payment_method, transaction_code, collected_by)
+VALUES
+(2, '2025-02-20', 300.00, 'Card', 'TXN1001', 'Cashier A'),
+(2, '2025-09-10', 200.00, 'Bank Transfer', 'TXN1002', 'Cashier B'),
+(2, '2025-10-05', 300.00, 'Card', 'TXN1003', 'Cashier B'),
+(3, '2025-03-05', 200.00, 'Cash', 'TXN1004', 'Cashier C'),
+(4, '2025-06-20', 500.00, 'Card', 'TXN1005', 'Cashier A'),
+(5, '2025-09-02', 800.00, 'Bank Transfer', 'TXN1006', 'Cashier A'),
+(5, '2025-09-25', 800.00, 'Card', 'TXN1007', 'Cashier B'),
+(6, '2025-03-12', 1000.00, 'Cash', 'TXN1008', 'Cashier C'),
+(7, '2025-07-05', 200.00, 'Card', 'TXN1009', 'Cashier A'),
+(7, '2025-07-20', 1000.00, 'Bank Transfer', 'TXN1010', 'Cashier B'),
+(7, '2025-07-01', 100.00, 'Card', 'TXN1011', 'Cashier A'),
+(9, '2025-07-10', 600.00, 'Cash', 'TXN1012', 'Cashier B'),
+(9, '2025-02-25', 300.00, 'Card', 'TXN1013', 'Cashier C'),
+(10, '2025-07-02', 600.00, 'Bank Transfer', 'TXN1014', 'Cashier A'),
+(11, '2025-03-12', 1000.00, 'Card', 'TXN1015', 'Cashier B'),
+(12, '2025-03-12', 700.00, 'Card', 'TXN1016', 'Cashier C'),
+(12, '2025-03-20', 500.00, 'Bank Transfer', 'TXN1017', 'Cashier A'),
+(13, '2026-04-01', 500.00, 'Card', 'TXN1018', 'Cashier D'),
+(14, '2025-09-02', 600.00, 'Cash', 'TXN1019', 'Cashier A'),
+(15, '2025-02-28', 400.00, 'Card', 'TXN1020', 'Cashier B'),
+(16, '2025-06-15', 200.00, 'Bank Transfer', 'TXN1021', 'Cashier C'),
+(16, '2025-07-05', 100.00, 'Card', 'TXN1022', 'Cashier A'),
+(18, '2025-09-20', 600.00, 'Cash', 'TXN1023', 'Cashier D'),
+(18, '2025-10-05', 1000.00, 'Bank Transfer', 'TXN1024', 'Cashier B'),
+(19, '2025-03-01', 1100.00, 'Card', 'TXN1025', 'Cashier C'),
+(20, '2026-02-15', 200.00, 'Bank Transfer', 'TXN1026', 'Cashier A'),
+(21, '2025-07-10', 1000.00, 'Card', 'TXN1027', 'Cashier B'),
+(21, '2025-07-20', 600.00, 'Cash', 'TXN1028', 'Cashier C'),
+(22, '2025-09-08', 1600.00, 'Bank Transfer', 'TXN1029', 'Cashier A'),
+(23, '2025-03-01', 1200.00, 'Card', 'TXN1030', 'Cashier B'),
+(23, '2025-03-10', 400.00, 'Cash', 'TXN1031', 'Cashier C'),
+(24, '2025-06-15', 1200.00, 'Bank Transfer', 'TXN1032', 'Cashier D'),
+(25, '2025-07-05', 500.00, 'Card', 'TXN1033', 'Cashier A'),
+(26, '2025-02-10', 600.00, 'Bank Transfer', 'TXN1034', 'Cashier B'),
+(26, '2025-03-05', 800.00, 'Card', 'TXN1035', 'Cashier C'),
+(27, '2025-09-15', 600.00, 'Cash', 'TXN1036', 'Cashier D'),
+(28, '2025-07-10', 200.00, 'Card', 'TXN1037', 'Cashier A'),
+(28, '2025-03-02', 500.00, 'Bank Transfer', 'TXN1038', 'Cashier B'),
+(30, '2025-09-01', 1300.00, 'Card', 'TXN1039', 'Cashier C'),
+(1, '2025-09-01', 500.00, 'Bank Transfer', 'TXN1040', 'Cashier D'),
+(2, '2025-12-01', 200.00, 'Card', 'TXN1041', 'Cashier A'),
+(3, '2025-07-15', 300.00, 'Cash', 'TXN1042', 'Cashier B'),
+(4, '2025-10-01', 500.00, 'Card', 'TXN1043', 'Cashier C'),
+(5, '2025-10-10', 800.00, 'Bank Transfer', 'TXN1044', 'Cashier D'),
+(6, '2025-11-01', 700.00, 'Card', 'TXN1045', 'Cashier A'),
+(7, '2025-11-05', 200.00, 'Cash', 'TXN1046', 'Cashier B'),
+(9, '2025-11-10', 600.00, 'Card', 'TXN1047', 'Cashier C'),
+(9, '2025-11-15', 500.00, 'Bank Transfer', 'TXN1048', 'Cashier D'),
+(10, '2026-01-05', 700.00, 'Card', 'TXN1049', 'Cashier A'),
+(7, '2025-11-05', 300.00, 'Card', 'TXN1050', 'Cashier B');
 
--- PAYMENTS
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (9, '2025-07-21', 300, 'Card', 'Ever sister personal.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (25, '2025-11-05', 300, 'Cash', 'Live fact ask else happen.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (21, '2025-11-11', 200, 'Card', 'Ball term first news represent magazine structure.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (25, '2025-02-24', 200, 'Bank Transfer', 'Able site relationship dream again.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (17, '2025-01-28', 500, 'Cash', 'Environmental table out democratic.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (20, '2025-07-21', 500, 'Cash', 'True management option walk.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (1, '2025-08-04', 300, 'Bank Transfer', 'Stop coach focus number room ball.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (15, '2025-05-11', 500, 'Card', 'Mean less card second.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (4, '2024-12-30', 300, 'Cash', 'Necessary civil friend right southern establish quality.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (18, '2025-10-15', 300, 'Cash', 'Girl experience either even clear former factor.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (8, '2025-02-27', 300, 'Card', 'Down road down.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (14, '2025-09-23', 500, 'Bank Transfer', 'Idea gun process.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (15, '2025-04-24', 300, 'Card', 'Role remain similar during.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (13, '2025-06-21', 300, 'Card', 'Choose threat suddenly my morning than cold.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (20, '2024-12-11', 300, 'Cash', 'Center tonight couple.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (7, '2025-08-20', 300, 'Cash', 'Technology well structure fact down.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (6, '2025-02-25', 200, 'Bank Transfer', 'Establish key outside.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (15, '2025-07-26', 200, 'Bank Transfer', 'Beat quality within film production but compare.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (19, '2025-07-20', 500, 'Card', 'Clearly will structure reason wait.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (26, '2025-05-17', 500, 'Card', 'Fast ago pick movement.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (10, '2025-09-03', 300, 'Card', 'Only baby commercial mind play item own.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (3, '2024-12-27', 300, 'Cash', 'Window teacher growth recognize marriage form.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (23, '2025-10-17', 300, 'Cash', 'Experience score drop would.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (17, '2025-01-16', 200, 'Cash', 'Time mention drop leg.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (10, '2025-11-16', 300, 'Card', 'Community lawyer look place us cut.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (20, '2025-09-27', 200, 'Bank Transfer', 'Also benefit senior then sometimes.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (22, '2025-01-12', 500, 'Cash', 'Order finally garden evening popular page seem.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (27, '2025-04-20', 500, 'Bank Transfer', 'Democratic account hard dark suggest section.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (2, '2025-08-03', 300, 'Card', 'Day writer interview feeling.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (26, '2025-05-29', 200, 'Cash', 'May even language policy.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (4, '2025-03-06', 500, 'Cash', 'Artist him standard.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (30, '2025-05-10', 200, 'Bank Transfer', 'Expert social run question.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (14, '2025-10-14', 300, 'Bank Transfer', 'Career might either write oil certain energy.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (5, '2025-09-09', 200, 'Cash', 'Eight data shake four world sit.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (13, '2025-06-13', 300, 'Card', 'Allow painting budget fine bar sometimes institution return.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (24, '2025-11-26', 500, 'Card', 'Near left practice something lay over fast.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (3, '2025-08-13', 200, 'Card', 'Purpose hair especially play knowledge.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (13, '2024-12-13', 500, 'Bank Transfer', 'Present them born growth rock.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (3, '2025-06-23', 500, 'Cash', 'Order mother see year.');
-INSERT INTO payment(fee_id, payment_date, amount, payment_method, remarks) VALUES (8, '2025-11-05', 500, 'Card', 'Approach network worker.');
-
--- ADVISOR ASSIGNMENTS
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (7, 2, '2024-12-29');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (5, 9, '2025-09-01');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (7, 20, '2024-03-28');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (3, 3, '2025-04-06');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (7, 5, '2024-01-13');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (4, 18, '2024-11-12');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (3, 29, '2024-09-22');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (1, 7, '2024-07-01');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (3, 28, '2024-08-03');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (8, 5, '2025-02-01');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (3, 30, '2024-08-13');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (5, 11, '2024-09-01');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (7, 25, '2024-03-31');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (1, 2, '2024-06-03');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (6, 20, '2024-05-12');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (5, 22, '2025-01-13');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (6, 24, '2024-07-10');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (2, 7, '2024-09-20');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (2, 2, '2024-03-20');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (1, 24, '2024-02-09');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (6, 15, '2025-05-15');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (7, 13, '2024-08-20');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (1, 25, '2024-06-04');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (1, 20, '2024-03-10');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (4, 25, '2024-07-17');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (5, 6, '2024-01-15');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (1, 27, '2025-09-11');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (4, 16, '2024-03-01');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (2, 5, '2025-04-30');
-INSERT INTO advisor_assignment(instructor_id, student_id, assigned_date) VALUES (3, 25, '2024-07-02');
-
+-- ENROLLMENTS (73)
+INSERT INTO enrollment (student_id, course_id, semester, academic_year, grade, status)
+VALUES
+-- Students with enrollment_year = 2023
+(1, 1, 'Fall', 2023, 9.75, 'Completed'),
+(1, 3, 'Spring', 2024, 8.25, 'Completed'),
+(1, 12, 'Fall', 2025, NULL, 'Enrolled'),
+(2, 7, 'Spring', 2024, 9.25, 'Completed'),
+(2, 8, 'Fall', 2024, 7.5, 'Completed'),
+(2, 11, 'Spring', 2025, NULL, 'Withdrawn'),
+(6, 12, 'Spring', 2023, 8.25, 'Completed'),
+(6, 14, 'Fall', 2024, 9.5, 'Completed'),
+(6, 15, 'Summer', 2025, NULL, 'Enrolled'),
+(9, 13, 'Fall', 2024, 10.0, 'Completed'),
+(9, 15, 'Summer', 2025, NULL, 'Withdrawn'),
+(9, 16, 'Fall', 2025, NULL, 'Enrolled'),
+(12, 7, 'Spring', 2023, 5.75, 'Completed'),
+(12, 10, 'Fall', 2024, 6.75, 'Completed'),
+(12, 11, 'Fall', 2025, NULL, 'Enrolled'),
+(15, 7, 'Spring', 2023, 9.75, 'Completed'),
+(15, 8, 'Fall', 2023, 9.25, 'Completed'),
+(15, 11, 'Spring', 2024, 8.25, 'Completed'),
+(17, 12, 'Fall', 2024, 7.5, 'Completed'),
+(17, 13, 'Spring', 2025, NULL, 'Withdrawn'),
+(20, 1, 'Spring', 2023, 5.0, 'Completed'),
+(20, 3, 'Summer', 2023, 8.25, 'Completed'),
+(20, 4, 'Fall', 2025, NULL, 'Enrolled'),
+(23, 12, 'Fall', 2023, 9.25, 'Completed'),
+(23, 13, 'Summer', 2024, 8.25, 'Completed'),
+(23, 16, 'Fall', 2025, NULL, 'Enrolled'),
+(25, 15, 'Summer', 2024, 5.75, 'Completed'),
+(25, 16, 'Fall', 2024, 6.75, 'Completed'),
+(29, 1, 'Spring', 2024, 10.0, 'Completed'),
+(29, 3, 'Fall', 2024, 9.25, 'Completed'),
+(29, 12, 'Spring', 2025, NULL, 'Withdrawn'),
+-- Students with enrollment_year = 2024
+(3, 14, 'Spring', 2024, 8.25, 'Completed'),
+(3, 15, 'Fall', 2024, 9.75, 'Completed'),
+(3, 16, 'Spring', 2025, NULL, 'Enrolled'),
+(4, 1, 'Spring', 2024, 9.25, 'Completed'),
+(4, 3, 'Summer', 2024, 7.5, 'Completed'),
+(4, 4, 'Fall', 2025, NULL, 'Enrolled'),
+(8, 7, 'Spring', 2024, 5.75, 'Completed'),
+(8, 10, 'Summer', 2024, 6.75, 'Completed'),
+(8, 11, 'Fall', 2025, NULL, 'Withdrawn'),
+(11, 12, 'Spring', 2024, 9.75, 'Completed'),
+(11, 13, 'Fall', 2024, 9.25, 'Completed'),
+(11, 14, 'Spring', 2025, NULL, 'Enrolled'),
+(13, 1, 'Spring', 2024, 8.25, 'Completed'),
+(13, 4, 'Summer', 2024, 9.25, 'Completed'),
+(13, 5, 'Fall', 2025, NULL, 'Enrolled'),
+(16, 12, 'Spring', 2024, 7.5, 'Completed'),
+(16, 14, 'Fall', 2024, 8.25, 'Completed'),
+(16, 17, 'Spring', 2025, NULL, 'Withdrawn'),
+(19, 13, 'Fall', 2024, 9.0, 'Completed'),
+(19, 15, 'Spring', 2025, NULL, 'Enrolled'),
+(21, 10, 'Spring', 2024, 5.0, 'Completed'),
+(21, 11, 'Fall', 2024, 5.75, 'Completed'),
+(24, 3, 'Summer', 2024, 8.25, 'Completed'),
+(24, 5, 'Fall', 2024, 6.75, 'Completed'),
+(27, 12, 'Spring', 2024, 9.25, 'Completed'),
+(27, 15, 'Summer', 2024, 8.25, 'Completed'),
+-- Students with enrollment_year = 2025 (Fall 2025 onward ONLY)
+(5, 8, 'Fall', 2025, NULL, 'Enrolled'),
+(5, 11, 'Fall', 2025, NULL, 'Enrolled'),
+(7, 4, 'Fall', 2025, NULL, 'Withdrawn'),
+(7, 6, 'Fall', 2025, NULL, 'Enrolled'),
+(10, 2, 'Fall', 2025, NULL, 'Enrolled'),
+(10, 4, 'Spring', 2026, NULL, 'Enrolled'),
+(14, 8, 'Fall', 2025, NULL, 'Enrolled'),
+(14, 11, 'Spring', 2026, NULL, 'Withdrawn'),
+(18, 8, 'Fall', 2025, NULL, 'Enrolled'),
+(18, 10, 'Summer', 2026, NULL, 'Enrolled'),
+(22, 16, 'Fall', 2025, NULL, 'Enrolled'),
+(22, 17, 'Spring', 2026, NULL, 'Enrolled'),
+(26, 6, 'Fall', 2025, NULL, 'Enrolled'),
+(26, 4, 'Spring', 2026, NULL, 'Withdrawn'),
+(30, 11, 'Fall', 2025, NULL, 'Enrolled'),
+(30, 8, 'Spring', 2026, NULL, 'Enrolled');
